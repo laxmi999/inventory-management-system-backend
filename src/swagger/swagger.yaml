@@ -1,0 +1,40 @@
+openapi: 3.0.4
+info:
+  title: Inventory Management System
+  version: 1.0.0
+  description: APIs for Inventory Management
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: User
+  - name: Product
+  - name: Inventory
+  - name: Transaction
+  - name: ProductSupplier
+  - name: Supplier
+paths:
+  /ping:
+    get:
+      summary: Health check
+      responses:
+        '200':
+          description: Pong!
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        userName:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          example: john@gmail.com
+        role:
+          type: string
+          example: Admin
+      xml:
+        name: user

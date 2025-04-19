@@ -1,5 +1,4 @@
 import * as path from 'path';
-import { fileURLToPath, pathToFileURL } from 'url';
 import pg from 'pg';
 const { Pool } = pg;
 import { promises as fs } from 'fs';
@@ -11,14 +10,7 @@ import {
   PostgresDialect,
   FileMigrationProvider,
 } from 'kysely';
-// import { ESMFileMigrationProvider } from './fileMigrationProvider';
 import { DB } from './kysely-types';
-
-// const migrationFolder = path.resolve(
-//   fileURLToPath(new URL('../db/migrations', import.meta.url))
-// );
-
-// const migrationFolder = new URL('../db/migrations', import.meta.url).pathname;
 
 async function migrateToLatest() {
   const db = new Kysely<DB>({
@@ -39,21 +31,24 @@ async function migrateToLatest() {
       path,
       migrationFolder: 'src/db/migrations',
     }),
-    // provider: new ESMFileMigrationProvider(migrationFolder),
   });
 
   const { error, results } = await migrator.migrateToLatest();
 
+  // tslint:disable-next-line:no-console
   console.log(`migrating......`);
 
   results?.forEach((it) => {
     if (it.status === 'Success') {
+      // tslint:disable-next-line:no-console
       console.log(`migration "${it.migrationName}" was executed successfully`);
     } else if (it.status === 'Error') {
+      // tslint:disable-next-line:no-console
       console.error(`failed to execute migration "${it.migrationName}"`);
     }
   });
   if (error) {
+    // tslint:disable-next-line:no-console
     console.error('failed to migrate: ', error);
     process.exit(1);
   }
