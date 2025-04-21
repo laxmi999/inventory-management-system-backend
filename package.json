@@ -4,20 +4,26 @@
   "description": "inventory management for small businesses",
   "main": "dist/app.js",
   "scripts": {
-    "codegen": "kysely-codegen --dialect postgres --camel-case --out-file ./src/db/kysely-types.d.ts",
+    "codegen": "kysely-codegen --dialect postgres --out-file ./src/db/kysely-types.d.ts",
     "prebuild": "eslint src --ext .ts --fix",
     "build": "tsc",
     "prestart": "npm run build",
     "start": "nodemon --watch src --ext ts --exec tsx src/app.ts",
     "migrator": "tsx src/db/migrator.ts",
-    "test": "tsx src/db/pathTest.ts"
+    "migrate:down": "tsx  src/db/undoMigration.ts",
+    "test": "tsx src/middlewares/auth.ts"
   },
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/jsonwebtoken": "^9.0.9",
+    "bcrypt": "^5.1.1",
+    "body-parser": "^2.2.0",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "jsonwebtoken": "^9.0.2",
     "kysely": "^0.27.5",
     "kysely-codegen": "^0.17.0",
     "pg": "^8.13.1",

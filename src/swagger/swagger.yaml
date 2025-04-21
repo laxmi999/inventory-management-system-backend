@@ -13,12 +13,25 @@ tags:
   - name: ProductSupplier
   - name: Supplier
 paths:
-  /ping:
+  /:
     get:
       summary: Health check
       responses:
         '200':
-          description: Pong!
+          description: Hey
+  # /auth/register:
+  #   post:
+  #     summary: Register a new user
+  #     requestBody:
+  #       required: true
+  #       content:
+  #         application/json:
+  #           schema:
+  #             type: object
+  #             required:
+  #               - email
+  #               - password
+
 components:
   schemas:
     User:

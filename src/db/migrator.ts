@@ -2,8 +2,7 @@ import * as path from 'path';
 import pg from 'pg';
 const { Pool } = pg;
 import { promises as fs } from 'fs';
-import * as dotenv from 'dotenv';
-dotenv.config();
+import 'dotenv/config';
 import {
   Kysely,
   Migrator,

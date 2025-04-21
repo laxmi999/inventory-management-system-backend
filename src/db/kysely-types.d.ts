@@ -3,7 +3,7 @@
  * Please do not edit it manually.
  */
 
-import type { ColumnType } from 'kysely';
+import type { ColumnType } from "kysely";
 
 export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
   ? ColumnType<S, I | undefined, U>
@@ -12,67 +12,69 @@ export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
 export type Numeric = ColumnType<string, number | string, number | string>;
 
 export interface Inventory {
-  createdAt: Generated<string>;
-  id: number;
+  created_at: Generated<string>;
+  id: Generated<number>;
   location: string | null;
-  productId: number;
+  product_id: number;
   sku: number;
-  updatedAt: Generated<string>;
+  updated_at: Generated<string>;
 }
 
 export interface Product {
-  createdAt: Generated<string>;
+  created_at: Generated<string>;
   description: string | null;
-  id: number;
-  imageLink: string;
-  name: string;
+  id: Generated<number>;
+  image_link: string;
   price: Numeric;
-  updatedAt: Generated<string>;
+  product_name: string;
+  updated_at: Generated<string>;
 }
 
 export interface ProductSupplier {
-  createdAt: Generated<string>;
-  id: number;
-  productId: number;
-  supplierId: number;
-  updatedAt: Generated<string>;
+  created_at: Generated<string>;
+  id: Generated<number>;
+  product_id: number;
+  supplier_id: number;
+  updated_at: Generated<string>;
 }
 
 export interface Supplier {
-  contactInfo: string;
-  createdAt: Generated<string>;
-  id: number;
+  created_at: Generated<string>;
+  id: Generated<number>;
   name: string;
-  updatedAt: Generated<string>;
+  supplier_contact: string;
+  updated_at: Generated<string>;
 }
 
 export interface Transaction {
-  cancelReason: string | null;
-  createdAt: Generated<string>;
+  cancel_reason: string | null;
+  created_at: Generated<string>;
   description: string;
-  id: number;
-  isCancelled: boolean | null;
-  productId: number;
+  id: Generated<number>;
+  is_cancelled: boolean | null;
+  product_id: number;
   quantity: number;
   type: string;
-  updatedAt: Generated<string>;
-  userId: number;
+  updated_at: Generated<string>;
+  user_id: number;
 }
 
 export interface User {
-  createdAt: Generated<string>;
+  contact_no: string;
+  created_at: Generated<string>;
   email: string;
-  id: number;
-  passwordHash: string;
+  full_name: string;
+  id: Generated<number>;
+  password_hash: string;
   role: string;
-  updatedAt: Generated<string>;
-  userName: string;
+  updated_at: Generated<string>;
+  username: string;
 }
 
 export interface DB {
   inventory: Inventory;
   product: Product;
-  productSupplier: ProductSupplier;
+  product_supplier: ProductSupplier;
   supplier: Supplier;
   transaction: Transaction;
   user: User;
