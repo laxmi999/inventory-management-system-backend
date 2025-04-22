@@ -5,13 +5,13 @@ info:
   description: APIs for Inventory Management
 servers:
   - url: http://localhost:8080
-tags:
-  - name: User
-  - name: Product
-  - name: Inventory
-  - name: Transaction
-  - name: ProductSupplier
-  - name: Supplier
+# tags:
+#   - name: User
+#   - name: Product
+#   - name: Inventory
+#   - name: Transaction
+#   - name: ProductSupplier
+#   - name: Supplier
 paths:
   /:
     get:
@@ -40,14 +40,109 @@ components:
         id:
           type: integer
           example: 1
-        userName:
+        username:
           type: string
-          example: John Doe
+          example: johndough
         email:
           type: string
           example: john@gmail.com
+        full_name:
+          type: string
+          example: John Doe
+        contact_no:
+          type: string
+          example: john@gmail.com
+        password:
+          type: string
+          example: password
         role:
           type: string
           example: Admin
       xml:
         name: user
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        product_name:
+          type: string
+          example: Pen
+        image_link:
+          type: string
+          example: image_link
+        description:
+          type: string
+          example: Ballpoint pen black
+        price:
+          type: string
+          example: 10
+        supplier_id:
+          type: integer
+          example: 1
+      xml:
+        name: product
+    Supplier:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: Dream Stationaries
+        supplier_contact:
+          type: string
+          example: 9856412371
+      xml:
+        name: supplier
+    Inventory:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        product_id:
+          type: integer
+          example: 1
+        sku:
+          type: integer
+          example: 12
+        location:
+          type: string
+          example: B12
+      xml:
+        name: inventory
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        product_id:
+          type: integer
+          example: 2
+        user_id:
+          type: integer
+          example: 1
+        quantity:
+          type: integer
+          example: 1
+        type:
+          type: string
+          example: idk
+        is_cancelled:
+          type: boolean
+          example: false
+        cancel_reason:
+          type: string
+          example: idk
+        description:
+          type: string
+          example: Ballpoint pen black
+        price:
+          type: string
+          example: 10
+      xml:
+        name: product

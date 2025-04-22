@@ -17,10 +17,10 @@ export async function registerUser(req: Request, res: Response) {
       password_hash: password_hash,
       role: role,
     })
-    .returningAll()
+    .returning(['id', 'username'])
     .executeTakeFirst();
 
-  res.status(201).json(user);
+  res.status(201).json({ message: `Registered as ${user?.username}!` });
 }
 
 export async function userLogin(req: Request, res: Response) {
@@ -36,5 +36,5 @@ export async function userLogin(req: Request, res: Response) {
   }
 
   const token = generateToken({ id: user.id, email: user.email });
-  res.json(token);
+  res.json({ jwt: token });
 }

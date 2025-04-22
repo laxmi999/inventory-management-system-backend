@@ -27,6 +27,7 @@ export interface Product {
   image_link: string;
   price: Numeric;
   product_name: string;
+  supplier_id: Generated<number | null>;
   updated_at: Generated<string>;
 }
 
