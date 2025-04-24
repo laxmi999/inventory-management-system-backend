@@ -19,18 +19,22 @@ paths:
       responses:
         '200':
           description: Hey
-  # /auth/register:
-  #   post:
-  #     summary: Register a new user
-  #     requestBody:
-  #       required: true
-  #       content:
-  #         application/json:
-  #           schema:
-  #             type: object
-  #             required:
-  #               - email
-  #               - password
+  /auth/register:
+    post:
+      summary: Register a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Successful operation.
+        '201':
+          description: New user created.
+        default:
+          description: Unexpected error.
 
 components:
   schemas:

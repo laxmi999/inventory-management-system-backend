@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 import { db } from '../db/index';
 
 export async function allSuppliers(req: Request, res: Response) {
@@ -36,10 +36,7 @@ export async function updateSupplier(req: Request, res: Response) {
 
 export async function deleteSupplier(req: Request, res: Response) {
   const { id } = req.params;
-
-  console.log(id);
-
-  const supplier = await db
+  await db
     .deleteFrom('supplier')
     .where('id', '=', Number(id))
     .executeTakeFirst();
