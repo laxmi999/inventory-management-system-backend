@@ -23,6 +23,7 @@
     "body-parser": "^2.2.0",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "express-async-handler": "^1.2.0",
     "jsonwebtoken": "^9.0.2",
     "kysely": "^0.27.5",
     "kysely-codegen": "^0.17.0",

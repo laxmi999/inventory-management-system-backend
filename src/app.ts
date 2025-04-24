@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import 'dotenv/config';
+import { errorHandler } from './middlewares/errorHandler';
 
 //Importing Routes
 import authRoutes from './routes/authRoutes';
@@ -33,6 +34,8 @@ app.use('/products', productRoutes);
 app.get('/', (req, res) => {
   res.send('Welcome!!');
 });
+
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Server active at http://localhost:${port}`);
