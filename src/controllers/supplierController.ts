@@ -44,11 +44,11 @@ export const updateSupplier = expressAsyncHandler(
 export const deleteSupplier = expressAsyncHandler(
   async (req: Request, res: Response) => {
     const { id } = req.params;
-    await db
+    const supplier = await db
       .deleteFrom('supplier')
       .where('id', '=', Number(id))
       .executeTakeFirst();
 
-    res.status(200).json({ message: 'Supplier deleted!' });
+    res.status(200).json({ message: `${supplier} deleted from suppliers!` });
   }
 );

@@ -72,3 +72,18 @@ export const updateProduct = expressAsyncHandler(
     res.status(200).json({ message: 'Product details updated!' });
   }
 );
+
+export const deleteProduct = expressAsyncHandler(
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const product = await db
+      .deleteFrom('product')
+      .where('id', '=', Number(id))
+      .returning('product_name')
+      .executeTakeFirst();
+
+    res
+      .status(200)
+      .json({ message: `${product?.product_name} deleted from inventory!` });
+  }
+);

@@ -4,6 +4,7 @@ import {
   getAllProducts,
   addNewProduct,
   updateProduct,
+  deleteProduct,
 } from '../controllers/productController';
 import { upload } from '../middlewares/imageUpload';
 
@@ -17,5 +18,6 @@ router.put(
   upload.single('image'),
   updateProduct
 );
+router.delete('/delete/:id', authenticateJWT, deleteProduct);
 
 export default router;
