@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
@@ -22,6 +23,13 @@ const __dirname = dirname(__filename);
 const swaggerDocument = YAML.load(path.join(__dirname, 'swagger/swagger.yaml'));
 
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+  })
+);
 
 //Routes
 app.use(express.json());
